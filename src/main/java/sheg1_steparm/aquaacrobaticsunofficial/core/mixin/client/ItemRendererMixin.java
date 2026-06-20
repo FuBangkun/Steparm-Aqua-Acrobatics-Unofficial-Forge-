@@ -10,7 +10,7 @@ import sheg1_steparm.aquaacrobaticsunofficial.config.ConfigHandler;
 public abstract class ItemRendererMixin {
     @ModifyArg(method = "renderWaterOverlayTexture", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;color(FFFF)V", ordinal = 0), index = 3)
     private float replaceOpacity(float originalOpacity) {
-        if (ConfigHandler.BlocksConfig.newWaterColors) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             return 0.1f;
         }
         else {

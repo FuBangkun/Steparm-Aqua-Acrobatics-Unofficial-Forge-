@@ -20,27 +20,24 @@ public class BlockFluidRendererMixin {
     @Final
     private BlockColors blockColors;
 
-
-    @ModifyConstant(
-            method = "initAtlasSprites",
-            constant = @Constant(stringValue = "minecraft:blocks/water_still")
-    )
+    @ModifyConstant(method = "initAtlasSprites", constant = @Constant(stringValue = "minecraft:blocks/water_still"))
     private String getWaterStillTexture(String old) {
-        if (ConfigHandler.BlocksConfig.newWaterColors)
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             return "aquaacrobaticsunofficial:blocks/water_still";
-        else
+        }
+        else {
             return old;
+        }
     }
 
-    @ModifyConstant(
-            method = "initAtlasSprites",
-            constant = @Constant(stringValue = "minecraft:blocks/water_flow")
-    )
+    @ModifyConstant(method = "initAtlasSprites", constant = @Constant(stringValue = "minecraft:blocks/water_flow"))
     private String getWaterFlowTexture(String old) {
-        if (ConfigHandler.BlocksConfig.newWaterColors)
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             return "aquaacrobaticsunofficial:blocks/water_flow";
-        else
+        }
+        else {
             return old;
+            }
     }
 
 

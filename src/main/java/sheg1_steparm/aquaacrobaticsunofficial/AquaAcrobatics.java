@@ -19,22 +19,23 @@ import sheg1_steparm.aquaacrobaticsunofficial.proxy.CommonProxy;
 public class AquaAcrobatics {
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
 
+    @SuppressWarnings("unused")
     @SidedProxy(clientSide = "sheg1_steparm.aquaacrobaticsunofficial.proxy.ClientProxy", serverSide = "sheg1_steparm.aquaacrobaticsunofficial.proxy.CommonProxy")
     private static CommonProxy proxy;
 
     @Mod.EventHandler
     public void preInit(final FMLPreInitializationEvent evt) {
-        proxy.onPreInit(evt);
+        proxy.preInit(evt);
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
-        proxy.onInit();
+        proxy.init();
     }
 
     @Mod.EventHandler
     public void postInit(final FMLPostInitializationEvent evt) {
-        proxy.onPostInit();
+        proxy.postInit();
     }
 
     @Mod.EventHandler

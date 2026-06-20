@@ -26,7 +26,7 @@ public class BlockAliasesBubbleColumnMixin {
      */
     @Inject(method = "loadBlockAliases", at = @At("RETURN"), remap = false)
     private static void injectAABubbleColumn(InputStream in, String path, List<List<?>> listBlockAliases, CallbackInfo ci) {
-        if (!ConfigHandler.MiscellaneousConfig.bubbleColumns) {
+        if (!ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns) {
             return;
         }
 

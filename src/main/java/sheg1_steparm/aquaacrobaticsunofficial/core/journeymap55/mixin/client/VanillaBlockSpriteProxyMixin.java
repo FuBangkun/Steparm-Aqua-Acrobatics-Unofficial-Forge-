@@ -28,7 +28,7 @@ public class VanillaBlockSpriteProxyMixin {
     )
     private void getSprites(BlockMD blockMD, CallbackInfoReturnable<Collection<ColoredSprite>> cir) {
         Block block = blockMD.getBlockState().getBlock();
-        if (ConfigHandler.BlocksConfig.newWaterColors && (block == Blocks.WATER || block == Blocks.FLOWING_WATER) && !Loader.isModLoaded("fluidlogged_api")) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors && (block == Blocks.WATER || block == Blocks.FLOWING_WATER) && !Loader.isModLoaded("fluidlogged_api")) {
             TextureAtlasSprite tas = FMLClientHandler.instance().getClient().getTextureMapBlocks().getAtlasSprite("aquaacrobaticsunofficial:blocks/water_still");
             cir.setReturnValue(Collections.singletonList(new ColoredSprite(tas, null)));
         }

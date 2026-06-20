@@ -94,7 +94,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IPla
         this.aquaAcrobatics$size = aquaAcrobatics$handleEntitySizeScaling(EntitySize.flexible(0.6F, 1.8F));
         this.aquaAcrobatics$playerEyeHeight = this.aquaAcrobatics$getEyeHeight(Pose.STANDING, this.aquaAcrobatics$size);
         this.dataManager.register(aquaAcrobatics$POSE, Pose.STANDING);
-        if (ConfigHandler.MovementConfig.enableToggleCrawling) {
+        if (ConfigHandler.MOVEMENT_CONFIG.enableToggleCrawling) {
             this.dataManager.register(TOGGLED_CRAWLING, false);
         }
     }
@@ -139,7 +139,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IPla
 
     @Override
     public boolean aquaAcrobatics$canForceCrawling() {
-        return ConfigHandler.MovementConfig.enableToggleCrawling && !this.isRiding() && !this.capabilities.isFlying && !this.isOnLadder();
+        return ConfigHandler.MOVEMENT_CONFIG.enableToggleCrawling && !this.isRiding() && !this.capabilities.isFlying && !this.isOnLadder();
     }
 
     @Override
@@ -343,7 +343,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IPla
                 if (this.aquaAcrobatics$isPoseClear(Pose.CROUCHING)) {
                     pose1 = Pose.CROUCHING;
                 } else {
-                    if (ConfigHandler.MovementConfig.enableCrawling)
+                    if (ConfigHandler.MOVEMENT_CONFIG.enableCrawling)
                         pose1 = Pose.SWIMMING;
                     else
                         pose1 = Pose.STANDING;
@@ -523,7 +523,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IPla
         this.cameraYaw = this.prevCameraYaw + (f - this.prevCameraYaw) * 0.4F;
         this.cameraPitch = 0.0F;
 
-        if (!ConfigHandler.MiscellaneousConfig.sneakingForParrots) {
+        if (!ConfigHandler.MISCELLANEOUS_CONFIG.sneakingForParrots) {
             return;
         }
 
@@ -536,7 +536,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements IPla
 
     @Inject(method = "addShoulderEntity", at = @At("HEAD"), cancellable = true)
     public void addShoulderEntity(NBTTagCompound p_192027_1_, CallbackInfoReturnable<Boolean> callbackInfo) {
-        if (ConfigHandler.MiscellaneousConfig.sneakingForParrots && this.isSneaking()) {
+        if (ConfigHandler.MISCELLANEOUS_CONFIG.sneakingForParrots && this.isSneaking()) {
             callbackInfo.setReturnValue(false);
         }
     }

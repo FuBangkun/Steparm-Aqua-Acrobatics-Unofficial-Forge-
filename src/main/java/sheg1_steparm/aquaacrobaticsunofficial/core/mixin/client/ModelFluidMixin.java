@@ -14,7 +14,7 @@ import sheg1_steparm.aquaacrobaticsunofficial.config.ConfigHandler;
 public class ModelFluidMixin {
     @Unique
     private ResourceLocation aqua$getRealStill(Fluid fluid) {
-        if (ConfigHandler.BlocksConfig.newWaterColors && fluid == FluidRegistry.WATER) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors && fluid == FluidRegistry.WATER) {
             return new ResourceLocation("aquaacrobaticsunofficial:blocks/water_still");
         }
         else {
@@ -24,7 +24,7 @@ public class ModelFluidMixin {
 
     @Unique
     private ResourceLocation aqua$getRealFlowing(Fluid fluid) {
-        if (ConfigHandler.BlocksConfig.newWaterColors && fluid == FluidRegistry.WATER) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors && fluid == FluidRegistry.WATER) {
             return new ResourceLocation("aquaacrobaticsunofficial:blocks/water_flow");
         }
         else {

@@ -63,7 +63,7 @@ public abstract class ModelBipedMixin extends ModelBase implements IModelBipedSw
 
     @Inject(method = "setRotationAngles", at = @At(value = "FIELD", target = "Lnet/minecraft/client/model/ModelBiped;swingProgress:F", opcode = Opcodes.GETFIELD))
     public void setRotationAnglesPre(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn, CallbackInfo callbackInfo) {
-        if (!ConfigHandler.MiscellaneousConfig.eatingAnimation || !(entityIn instanceof EntityLivingBase)) {
+        if (!ConfigHandler.MISCELLANEOUS_CONFIG.eatingAnimation || !(entityIn instanceof EntityLivingBase)) {
             return;
         }
 

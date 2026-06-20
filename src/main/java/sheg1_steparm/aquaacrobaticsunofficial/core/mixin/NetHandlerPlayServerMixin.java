@@ -13,8 +13,7 @@ public abstract class NetHandlerPlayServerMixin {
 
     @Redirect(method = "processEntityAction", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/EntityPlayerMP;motionY:D", opcode = Opcodes.GETFIELD))
     public double getElytraFlyingMotion(EntityPlayerMP player) {
-
         // 1.15 change for easier elytra takeoff
-        return ConfigHandler.MovementConfig.easyElytraTakeoff ? -1.0 : player.motionY;
+        return ConfigHandler.MOVEMENT_CONFIG.easyElytraTakeoff ? -1.0 : player.motionY;
     }
 }

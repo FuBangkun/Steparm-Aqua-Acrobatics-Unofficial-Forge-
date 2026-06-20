@@ -103,7 +103,7 @@ public abstract class EntityPlayerSPMixin extends AbstractClientPlayer implement
         if (this.aquaAcrobatics$canSwim()) {
             return this.aquaAcrobatics$isMovingForward(moveForward, moveStrafe);
         }
-        if (ConfigHandler.MovementConfig.sidewaysSprinting) {
+        if (ConfigHandler.MOVEMENT_CONFIG.sidewaysSprinting) {
             return moveForward >= 0.8F || Math.abs(moveStrafe) > 0.8F;
         }
         return moveForward >= 0.8F;
@@ -118,7 +118,7 @@ public abstract class EntityPlayerSPMixin extends AbstractClientPlayer implement
     public boolean aquaAcrobatics$isMovingForward(float moveForward, float moveStrafe) {
         if (moveForward > 1.0E-5F) {
             return true;
-        } else if (ConfigHandler.MovementConfig.sidewaysSwimming) {
+        } else if (ConfigHandler.MOVEMENT_CONFIG.sidewaysSwimming) {
             return Math.abs(moveStrafe) > 1.0E-5F;
         }
         return false;
@@ -126,7 +126,7 @@ public abstract class EntityPlayerSPMixin extends AbstractClientPlayer implement
 
     @Inject(method = "pushOutOfBlocks", at = @At("HEAD"), cancellable = true)
     protected void pushOutOfBlocks(double x, double y, double z, CallbackInfoReturnable<Boolean> callbackInfo) {
-        if (ConfigHandler.playerBlockCollisions != ConfigHandler.PlayerBlockCollisions.EXACT) {
+        if (ConfigHandler.MOVEMENT_CONFIG.playerBlockCollisions != ConfigHandler.PlayerBlockCollisions.EXACT) {
             return;
         }
         if (!this.noClip) {
@@ -185,7 +185,7 @@ public abstract class EntityPlayerSPMixin extends AbstractClientPlayer implement
 
     @Redirect(method = {"pushOutOfBlocks", "localPushOutOfBlocks"}, at = @At(value = "INVOKE", target = "Ljava/lang/Math;ceil(D)D"))
     private double ceil(double a) {
-        if (ConfigHandler.playerBlockCollisions == ConfigHandler.PlayerBlockCollisions.APPROXIMATE) {
+        if (ConfigHandler.MOVEMENT_CONFIG.playerBlockCollisions == ConfigHandler.PlayerBlockCollisions.APPROXIMATE) {
             a -= 0.65;
         }
         return Math.ceil(a);
@@ -270,7 +270,7 @@ public abstract class EntityPlayerSPMixin extends AbstractClientPlayer implement
         boolean isSprintingEnvironment = this.onGround || this.aquaAcrobatics$canSwim() || this.aquaAcrobatics$movementStorage.isFlying;
         if (isSprintingEnvironment && !wasSneaking && !wasSwimming && this.aquaAcrobatics$isUsingSwimmingAnimation() && !this.isSprinting() && isSaturated && !this.isHandActive() && !this.isPotionActive(MobEffects.BLINDNESS)) {
             if (this.aquaAcrobatics$movementStorage.sprintToggleTimer <= 0 && !this.mc.gameSettings.keyBindSprint.isKeyDown()) {
-                this.sprintToggleTimer = ConfigHandler.MovementConfig.noDoubleTapSprinting ? 0 : 7;
+                this.sprintToggleTimer = ConfigHandler.MOVEMENT_CONFIG.noDoubleTapSprinting ? 0 : 7;
             } else {
                 this.setSprinting(true);
             }
@@ -297,7 +297,7 @@ public abstract class EntityPlayerSPMixin extends AbstractClientPlayer implement
 
     @Override
     public boolean aquaAcrobatics$canPerformElytraTakeoff() {
-        return (ConfigHandler.MovementConfig.easyElytraTakeoff && this.movementInput.jump && !this.aquaAcrobatics$movementStorage.isStartingToFly && !this.aquaAcrobatics$movementStorage.jump && this.motionY >= 0.0 && !this.capabilities.isFlying && !this.isRiding() && !this.isOnLadder());
+        return (ConfigHandler.MOVEMENT_CONFIG.easyElytraTakeoff && this.movementInput.jump && !this.aquaAcrobatics$movementStorage.isStartingToFly && !this.aquaAcrobatics$movementStorage.jump && this.motionY >= 0.0 && !this.capabilities.isFlying && !this.isRiding() && !this.isOnLadder());
     }
 
     @Unique

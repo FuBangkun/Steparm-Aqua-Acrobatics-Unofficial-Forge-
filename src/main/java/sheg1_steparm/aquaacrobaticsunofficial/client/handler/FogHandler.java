@@ -40,11 +40,11 @@ public class FogHandler {
 
     public static void recomputeBlacklist() {
         worldProviderClassNames = new HashSet<>();
-        worldProviderClassNames.addAll(Arrays.asList(ConfigHandler.MiscellaneousConfig.providerFogBlacklist));
+        worldProviderClassNames.addAll(Arrays.asList(ConfigHandler.MISCELLANEOUS_CONFIG.providerFogBlacklist));
     }
 
     private boolean shouldSkipFogOverride(World world) {
-        if (!ConfigHandler.BlocksConfig.newWaterFog) {
+        if (!ConfigHandler.BLOCKS_CONFIG.newWaterFog) {
             return false;
         }
         return !worldProviderClassNames.contains(world.provider.getClass().getName());
@@ -52,7 +52,7 @@ public class FogHandler {
 
     @SubscribeEvent
     public void registerBlockColors(ColorHandlerEvent.Block event) {
-        if (ConfigHandler.MiscellaneousConfig.bubbleColumns) {
+        if (ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns) {
             event.getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> worldIn != null && pos != null ? BiomeColorHelper.getWaterColorAtPos(worldIn, pos) : -1, CommonProxy.BUBBLE_COLUMN);
         }
     }
@@ -83,7 +83,7 @@ public class FogHandler {
     /* LOW to override mods like Biomes O' Plenty which force their own underwater fog color */
     @SubscribeEvent(priority = EventPriority.LOW)
     public void onRenderFogColor(EntityViewRenderEvent.FogColors event) {
-        if (!ConfigHandler.BlocksConfig.newWaterColors) {
+        if (!ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             return;
         }
         Block blockInside = event.getState().getBlock();

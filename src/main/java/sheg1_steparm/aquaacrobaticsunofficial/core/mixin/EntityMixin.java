@@ -59,8 +59,9 @@ public abstract class EntityMixin implements IBubbleColumnInteractable {
 
     @ModifyVariable(method = "move", ordinal = 0, name = "block", at = @At("LOAD"))
     private Block getFakeClimbingBlock(Block original) {
-        if (ConfigHandler.MovementConfig.newClimbingBehavior && original instanceof BlockVine)
+        if (ConfigHandler.MOVEMENT_CONFIG.newClimbingBehavior && original instanceof BlockVine) {
             return Blocks.LADDER;
+        }
         return original;
     }
 }

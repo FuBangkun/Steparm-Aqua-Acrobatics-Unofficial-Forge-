@@ -111,21 +111,21 @@ public abstract class EntityBoatMixin extends Entity implements IBubbleColumnInt
 
     @Unique
     public void aquaAcrobatics$setRockingTicks(int p_203055_1_) {
-        if (!ConfigHandler.MiscellaneousConfig.bubbleColumns)
+        if (!ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns)
             return;
         this.dataManager.set(BOAT_ROCKING_TICKS, p_203055_1_);
     }
 
     @Unique
     public int aquaAcrobatics$getRockingTicks() {
-        if (!ConfigHandler.MiscellaneousConfig.bubbleColumns)
+        if (!ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns)
             return 0;
         return this.dataManager.get(BOAT_ROCKING_TICKS);
     }
 
     @SideOnly(Side.CLIENT)
     public float aquaAcrobatics$getRockingAngle(float partialTicks) {
-        if (!ConfigHandler.MiscellaneousConfig.bubbleColumns)
+        if (!ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns)
             return 0.0f;
         return this.aquaAcrobatics$prevRockingAngle + (this.aquaAcrobatics$rockingAngle - this.aquaAcrobatics$prevRockingAngle) * partialTicks;
     }

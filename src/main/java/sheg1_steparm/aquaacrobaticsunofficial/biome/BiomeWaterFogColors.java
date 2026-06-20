@@ -116,7 +116,7 @@ public abstract class BiomeWaterFogColors {
         for (String colorEntry : DEFAULT_COLORS) {
             processStringColor(colorEntry);
         }
-        for (String colorEntry : ConfigHandler.MiscellaneousConfig.customBiomeWaterColors) {
+        for (String colorEntry : ConfigHandler.MISCELLANEOUS_CONFIG.customBiomeWaterColors) {
             processStringColor(colorEntry);
         }
     }

@@ -19,7 +19,7 @@ public abstract class BiomeMixin {
     @Unique
     @SuppressWarnings("unused")
     public int aqua$waterColorMultiplier() {
-        if (ConfigHandler.BlocksConfig.newWaterColors) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             /* We might call getWaterColorForBiome twice, but it's fine because it caches after the first call */
             return BiomeWaterFogColors.getWaterColorForBiome((Biome) (Object) this, getWaterColorMultiplier());
         } else {
@@ -29,7 +29,7 @@ public abstract class BiomeMixin {
 
     @Inject(method = "getWaterColorMultiplier", at = @At("TAIL"), remap = false, cancellable = true)
     private void forceNewColor(CallbackInfoReturnable<Integer> cir) {
-        if (ConfigHandler.BlocksConfig.newWaterColors) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             cir.setReturnValue(BiomeWaterFogColors.getWaterColorForBiome((Biome) (Object) this, cir.getReturnValue()));
         }
     }

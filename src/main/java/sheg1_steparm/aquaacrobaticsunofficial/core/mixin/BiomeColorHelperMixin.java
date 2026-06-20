@@ -19,7 +19,7 @@ public class BiomeColorHelperMixin {
     @Inject(method = "func_180283_a", at = @At("RETURN"), cancellable = true, remap = false)
     @Dynamic("Exists only in an SRG environment")
     private void getNewWaterColorMultiplier(Biome biome, BlockPos position, CallbackInfoReturnable<Integer> cir) {
-        if (ConfigHandler.BlocksConfig.newWaterColors) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             cir.setReturnValue(BiomeWaterFogColors.getWaterColorForBiome(biome, cir.getReturnValue()));
         }
     }

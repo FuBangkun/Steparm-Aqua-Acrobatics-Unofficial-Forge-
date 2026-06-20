@@ -36,12 +36,12 @@ import java.util.List;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
     @Override
-    public void onPreInit(FMLPreInitializationEvent event) {
-        super.onPreInit(event);
+    public void preInit(FMLPreInitializationEvent event) {
+        super.preInit(event);
         MinecraftForge.EVENT_BUS.register(new AirMeterHandler());
         MinecraftForge.EVENT_BUS.register(new FogHandler());
 
-        if (ConfigHandler.BlocksConfig.newWaterColors) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             List<IResourcePack> packs = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "field_110449_ao");
             packs.add(new WaterResourcePack(event.getSourceFile()));
             FMLClientHandler.instance().refreshResources(VanillaResourceType.TEXTURES);
@@ -51,7 +51,7 @@ public class ClientProxy extends CommonProxy {
 
 
     @Override
-    public void onInit() {
+    public void init() {
         Keybindings.register();
     }
 
@@ -64,14 +64,14 @@ public class ClientProxy extends CommonProxy {
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
-        if (ConfigHandler.MiscellaneousConfig.bubbleColumns) {
+        if (ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns) {
             ModelLoader.setCustomStateMapper(CommonProxy.BUBBLE_COLUMN, new StateMap.Builder().ignore(BlockLiquid.LEVEL, BlockBubbleColumn.DRAG).build());
         }
     }
 
     @SubscribeEvent
     public static void registerTextures(TextureStitchEvent.Pre event) {
-        if (ConfigHandler.BlocksConfig.newWaterColors) {
+        if (ConfigHandler.BLOCKS_CONFIG.newWaterColors) {
             TextureMap map = event.getMap();
             map.registerSprite(new ResourceLocation("aquaacrobaticsunofficial:blocks/water_still"));
             map.registerSprite(new ResourceLocation("aquaacrobaticsunofficial:blocks/water_flow"));
@@ -80,7 +80,7 @@ public class ClientProxy extends CommonProxy {
 
     @SubscribeEvent
     public static void onKeyPress(InputEvent.KeyInputEvent event) {
-        if (ConfigHandler.MovementConfig.enableToggleCrawling && Keybindings.forceCrawling.isPressed()) {
+        if (ConfigHandler.MOVEMENT_CONFIG.enableToggleCrawling && Keybindings.forceCrawling.isPressed()) {
             IPlayerResizeable player = (IPlayerResizeable) Minecraft.getMinecraft().player;
             if (player != null) {
                 if (player.aquaAcrobatics$canForceCrawling())
@@ -93,8 +93,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void onPostInit() {
-        super.onPostInit();
+    public void postInit() {
+        super.postInit();
         FogHandler.recomputeBlacklist();
     }
 }

@@ -30,7 +30,7 @@ public abstract class EntityItemMixin extends Entity {
 
     @Unique
     private boolean aqua$shouldBeBuoyant() {
-        return ConfigHandler.MiscellaneousConfig.floatingItems;
+        return ConfigHandler.MISCELLANEOUS_CONFIG.floatingItems;
     }
 
     @Redirect(method = "onUpdate", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/item/EntityItem;hasNoGravity()Z", ordinal = 0), require = 0)

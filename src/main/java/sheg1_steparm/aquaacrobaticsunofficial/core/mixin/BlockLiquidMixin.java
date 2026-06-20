@@ -18,7 +18,7 @@ public abstract class BlockLiquidMixin extends Block {
     @Override
     @SuppressWarnings("deprecation")
     public int getLightOpacity(@Nonnull IBlockState state) {
-        if (ConfigHandler.BlocksConfig.brighterWater && state.getMaterial() == Material.WATER) {
+        if (ConfigHandler.BLOCKS_CONFIG.brighterWater && state.getMaterial() == Material.WATER) {
             return 1;
         }
         else {

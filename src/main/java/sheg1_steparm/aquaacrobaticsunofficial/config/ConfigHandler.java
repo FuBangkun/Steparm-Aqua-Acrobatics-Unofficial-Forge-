@@ -12,86 +12,95 @@ import sheg1_steparm.aquaacrobaticsunofficial.client.handler.FogHandler;
 @Config(modid = Tags.MOD_ID)
 @Mod.EventBusSubscriber
 public class ConfigHandler {
-    @Config.Name("Push Player Out Of Blocks")
-    @Config.Comment({"STANDARD - The player will occasionally be pushed out of certain spaces. Collisions are evaluated for full cubes only, non-full cubes are ignored. This is the default behavior up to Minecraft 1.12.", "APPROXIMATE - The player can move into more spaces, but will still be pushed out of some. Collisions are evaluated for full cubes only, non-full cubes are ignored.", "EXACT - The player can move into all spaces as expected. Collisions are evaluated for all types of cubes. This is the default behavior in Minecraft 1.13 and onwards."})
-    public static PlayerBlockCollisions playerBlockCollisions = PlayerBlockCollisions.APPROXIMATE;
+    @Config.Comment("Movement")
+    public static final MovementConfig MOVEMENT_CONFIG = new MovementConfig();
 
     public static class MovementConfig {
+        @Config.Name("Push Player Out Of Blocks")
+        @Config.Comment({"STANDARD - The player will occasionally be pushed out of certain spaces. Collisions are evaluated for full cubes only, non-full cubes are ignored. This is the default behavior up to Minecraft 1.12.", "APPROXIMATE - The player can move into more spaces, but will still be pushed out of some. Collisions are evaluated for full cubes only, non-full cubes are ignored.", "EXACT - The player can move into all spaces as expected. Collisions are evaluated for all types of cubes. This is the default behavior in Minecraft 1.13 and onwards."})
+        public PlayerBlockCollisions playerBlockCollisions = PlayerBlockCollisions.APPROXIMATE;
+
         @Config.Name("Easy Elytra Takeoff")
         @Config.Comment("Taking off with an elytra from the ground is now far easier like in Minecraft 1.15 and onwards.")
-        public static boolean easyElytraTakeoff = true;
+        public boolean easyElytraTakeoff = true;
 
         @Config.Name("No Double Tap Sprinting")
         @Config.Comment("Prevent sprinting from being triggered by double tapping the walk forward key.")
-        public static boolean noDoubleTapSprinting = false;
+        public boolean noDoubleTapSprinting = false;
 
         @Config.Name("Sideways Sprinting")
         @Config.Comment("Enables sprinting to the left and right.")
-        public static boolean sidewaysSprinting = false;
+        public boolean sidewaysSprinting = false;
 
         @Config.Name("Sideways Swimming")
         @Config.Comment("Enables swimming to the left and right.")
-        public static boolean sidewaysSwimming = false;
+        public boolean sidewaysSwimming = false;
 
         @Config.Name("Enable Crawling")
         @Config.Comment("Enables crawling to prevent suffocation. Note that if you disable this there will probably be behavioral differences from 1.13.")
-        public static boolean enableCrawling = true;
+        public boolean enableCrawling = true;
 
         @Config.Name("Enable Toggle Crawling")
         @Config.Comment("Enables a keybind to toggle crawling.")
-        public static boolean enableToggleCrawling = false;
+        public boolean enableToggleCrawling = false;
 
         @Config.Name("New Projectile Behavior")
         @Config.Comment("Modify projectile behavior to be closer to that of newer versions (fixes MC-73884 and allows bubble columns to work with ender pearls).")
-        public static boolean newProjectileBehavior = false;
+        public boolean newProjectileBehavior = false;
 
         @Config.Name("New Climbing Behavior")
         @Config.Comment("Allow climbing vines and climbing by pressing jump.")
-        public static boolean newClimbingBehavior = false;
+        public boolean newClimbingBehavior = false;
     }
+
+    @Config.Comment("Blocks")
+    public static final BlocksConfig BLOCKS_CONFIG = new BlocksConfig();
 
     public static class BlocksConfig {
         @Config.Name("Brighter Water")
         @Config.Comment("Make water only reduce light level by 1 per Y-level, instead of 3.")
-        public static boolean brighterWater = true;
+        public boolean brighterWater = true;
 
         @Config.Name("New Water")
         @Config.Comment("Use the new water rendering in 1.13+.")
-        public static boolean newWaterColors = true;
+        public boolean newWaterColors = true;
 
         @Config.Name("New Water Fog")
         @Config.Comment("Use the new fog rendering in 1.13+.")
-        public static boolean newWaterFog = true;
+        public boolean newWaterFog = true;
     }
+
+    @Config.Comment("Miscellaneous")
+    public static final MiscellaneousConfig MISCELLANEOUS_CONFIG = new MiscellaneousConfig();
 
     public static class MiscellaneousConfig {
         @Config.Name("Replenish Air Slowly")
         @Config.Comment("Replenish air slowly when out of water instead of immediately.")
-        public static boolean slowAirReplenish = false;
+        public boolean slowAirReplenish = false;
 
         @Config.Name("Sneaking Dismounts Parrots")
         @Config.Comment("Parrots no longer leave the players shoulders as easily, instead the player needs to press the sneak key.")
-        public static boolean sneakingForParrots = true;
+        public boolean sneakingForParrots = true;
 
         @Config.Name("Eating Animation")
         @Config.Comment("Animate eating in third-person view.")
-        public static boolean eatingAnimation = true;
+        public boolean eatingAnimation = true;
 
         @Config.Name("Bubble Columns")
         @Config.Comment("Enable bubble columns.")
-        public static boolean bubbleColumns = false;
+        public boolean bubbleColumns = false;
 
         @Config.Name("Custom Biome Water Colors")
         @Config.Comment("Allows overriding the water and fog colors for a biome. Specify each entry like this (without quotes) - 'modname:biome,color,fogcolor'")
-        public static String[] customBiomeWaterColors = new String[]{};
+        public String[] customBiomeWaterColors = new String[]{};
 
         @Config.Name("WorldProvider Fog Blacklist")
         @Config.Comment("List of WorldProviders in which fog should be disabled.")
-        public static String[] providerFogBlacklist = new String[]{"thebetweenlands.common.world.WorldProviderBetweenlands"};
+        public String[] providerFogBlacklist = new String[]{"thebetweenlands.common.world.WorldProviderBetweenlands"};
 
         @Config.Name("Floating Items")
         @Config.Comment("Whether or not items should float in water like in 1.13+.")
-        public static boolean floatingItems = true;
+        public boolean floatingItems = true;
     }
 
     @SubscribeEvent

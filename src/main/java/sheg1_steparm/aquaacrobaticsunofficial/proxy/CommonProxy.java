@@ -22,17 +22,17 @@ public class CommonProxy {
     public static BlockBubbleColumn BUBBLE_COLUMN;
 
     private boolean needNetworking() {
-        return ConfigHandler.MovementConfig.enableToggleCrawling;
+        return ConfigHandler.MOVEMENT_CONFIG.enableToggleCrawling;
     }
 
-    public void onPreInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event) {
         if (needNetworking()) {
             NetworkHandler.registerMessages(Tags.MOD_ID);
         }
         MinecraftForge.EVENT_BUS.register(new CommonHandler());
     }
 
-    public void onInit() {
+    public void init() {
     }
 
     public void onMappings() {
@@ -40,13 +40,12 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        if (ConfigHandler.MiscellaneousConfig.bubbleColumns) {
+        if (ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns) {
             event.getRegistry().register(new BlockBubbleColumn());
         }
     }
 
-
-    public void onPostInit() {
+    public void postInit() {
         if (!AquaAcrobaticsLateLoader.isModCompatLoaded) {
             AquaAcrobatics.LOGGER.error("Please consider installing MixinBooter to ensure compatibility with more mods");
         }

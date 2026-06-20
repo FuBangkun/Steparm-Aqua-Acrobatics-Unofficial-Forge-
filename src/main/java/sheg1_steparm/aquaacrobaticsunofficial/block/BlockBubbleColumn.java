@@ -62,7 +62,7 @@ public class BlockBubbleColumn extends BlockStaticLiquid {
     }
 
     public static void placeBubbleColumn(World world, BlockPos pos, boolean isUpwards) {
-        if (!ConfigHandler.MiscellaneousConfig.bubbleColumns) {
+        if (!ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns) {
             return;
         }
         if (canHoldBubbleColumn(world, pos)) {

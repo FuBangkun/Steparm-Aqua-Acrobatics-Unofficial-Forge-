@@ -10,7 +10,7 @@ public class CommonHandler {
     @SubscribeEvent
     public void onEntityConstructing(EntityEvent.EntityConstructing event) {
         if (event.getEntity() instanceof EntityBoat) {
-            if (ConfigHandler.MiscellaneousConfig.bubbleColumns) {
+            if (ConfigHandler.MISCELLANEOUS_CONFIG.bubbleColumns) {
                 ((IRockableBoat) event.getEntity()).aqua$doRegisterData();
             }
         }
